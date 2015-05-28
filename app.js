@@ -1,3 +1,4 @@
+require('dns-notfound-what');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -154,6 +155,10 @@ router.post('/devices', function (req, res) {
   } else {
     res.status(422).send('required param missing: {host: "", port: 7000}');
   }
+});
+
+process.on('uncaughtException', function() {
+  console.log(arguments);
 });
 
 module.exports = app;
